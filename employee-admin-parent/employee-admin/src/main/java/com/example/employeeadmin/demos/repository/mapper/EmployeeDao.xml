@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.employeeadmin.demos.repository.mapper.EmployeeDao">
+    <select id="queryExportData" resultType="com.example.employeeadmin.demos.domains.dto.EmployeeDto" parameterType="com.example.employeeadmin.demos.domains.po.Employee">
+        SELECT e.emp_name, c1.type_desc sex, e.age, c2.type_desc deptName, c3.type_desc empDegreeName
+        FROM employee e
+        LEFT JOIN code c1 on c1.id=e.sex
+        LEFT JOIN code c2 on c2.id=e.dept_name
+        LEFT JOIN code c3 on c3.id=e.emp_degree_name
+        <where>
+            <if test="empName != null and empName != ''">
+                AND e.emp_name = #{empName}
+            </if>
+            <if test="deptName != null">
+                AND e.dept_name = #{deptName}
+            </if>
+            <if test="empDegreeName != null">
+                AND e.emp_degree_name = #{empDegreeName}
+            </if>
+                AND enabled = 10011001
+        </where>
+    </select>
+
+</mapper>

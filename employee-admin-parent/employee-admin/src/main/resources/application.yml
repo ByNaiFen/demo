@@ -1,0 +1,30 @@
+server:
+    port: 9000
+spring:
+    application:
+        name: employee-admin
+    datasource:
+        url: jdbc:mysql://43.134.94.171:3306/employee?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        password: 123456
+        username: root
+
+mybatis-plus:
+    configuration:
+        log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    type-aliases-package: com.example.employeeadmin.demos.domains.po
+    global-config:
+        db-config:
+            logic-delete-field: enabled  # 全局逻辑删除的实体字段名(since 3.3.0,配置后可以忽略不配置步骤2)
+            logic-delete-value: 10011002 # 逻辑已删除值(默认为 1)
+            logic-not-delete-value: 10011001 # 逻辑未删除值(默认为 0)
+
+logging:
+    level:
+        com:
+            example:
+                employeeadmin:
+                    demos: debug
+
+
+
